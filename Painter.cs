@@ -2,9 +2,15 @@
 
 namespace Lab2
 {
+    public delegate void ADDRectangle(int id);
+    public delegate void ChangePoint(int id, int point);
+    public delegate void UpdateData();
     internal class Painter
     {
-        int ID = 0;
+        public event ADDRectangle add;
+        public event ChangePoint change;
+       // public event UpdateData update;
+        static public int ID = 0;
         public Dictionary<int, Square> rects = new Dictionary<int, Square>();
         private List<Animator> animators = new List<Animator>();
         Thread? t0 = null;
@@ -39,6 +45,7 @@ namespace Lab2
             ID += 1;
             Square rect = new Square(e.X, e.Y, 30);
             rects[ID] = rect;
+            add(ID);
             var t = new Thread(() => addNewCircle(rect.X, rect.Y, ID, rect.Color));
             t.Start();
         }
@@ -47,6 +54,7 @@ namespace Lab2
             ID += 1;
             Square rect = new Square(x, y, 30);
             rects[ID] = rect;
+            add(ID);
             var t = new Thread(() => addNewCircle(rect.X, rect.Y, ID, rect.Color));
             t.Start();
         }
@@ -78,6 +86,8 @@ namespace Lab2
 
             while (true)
             {
+                //Thread updateDataGrid = new Thread(new ThreadStart(update));
+                //updateDataGrid.Start();
                 Random rndDead = new Random();
                 int Number = rndDead.Next(1);
                 int key;
@@ -103,6 +113,7 @@ namespace Lab2
                                     if (rects.ContainsKey(key))
                                     {
                                         rects[key].Point += 1;
+                                        change(key, rects[key].Point);
                                     }
 
                                 }
@@ -113,6 +124,7 @@ namespace Lab2
                                     if (rects.ContainsKey(key))
                                     {
                                         rects[key].Point += 1;
+                                        change(key, rects[key].Point);
                                     }
                                 }
                             }

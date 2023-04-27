@@ -12,7 +12,6 @@ namespace Lab2
         private int dx = -1, dy = 1;
         private Size containerSize;
         public bool Dead { get; set; } = false;
-        Thread? t = null;
         public Animator(Circle circle, Size containerSize)
         {
             Random random = new Random();
