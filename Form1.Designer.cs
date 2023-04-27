@@ -29,33 +29,48 @@
         private void InitializeComponent()
         {
             pictureBox = new PictureBox();
+            dataGridView = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // pictureBox
             // 
-            pictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox.Dock = DockStyle.Left;
             pictureBox.Location = new Point(0, 0);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(928, 489);
+            pictureBox.Size = new Size(690, 489);
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
             pictureBox.MouseClick += pictureBox_MouseClick;
+            // 
+            // dataGridView
+            // 
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Dock = DockStyle.Right;
+            dataGridView.Location = new Point(688, 0);
+            dataGridView.Name = "dataGridView";
+            dataGridView.RowTemplate.Height = 25;
+            dataGridView.Size = new Size(240, 489);
+            dataGridView.TabIndex = 1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(928, 489);
+            Controls.Add(dataGridView);
             Controls.Add(pictureBox);
             Name = "Form1";
             Text = "Project of Rafael";
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private PictureBox pictureBox;
+        private DataGridView dataGridView;
     }
 }
